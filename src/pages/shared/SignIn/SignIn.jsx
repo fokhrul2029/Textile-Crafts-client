@@ -1,16 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../../components/SocialLogin/SocialLogin";
+import { AuthContext } from "../../../contextApi/AuthProvider";
 
 function SignIn() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const { loginUser } = useContext(AuthContext);
 
   const handleLoginForm = (e) => {
     e.preventDefault();
     const user = { email, password };
     console.log(user);
+    loginUser(email, password)
+      .then(() => {
+        console.log("Login Success");
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <div>

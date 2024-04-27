@@ -71,8 +71,8 @@ function Navbar() {
               <img
                 className="border-2 rounded-full border-orange-400 p-[2px] w-11 h-11"
                 src={user.photoURL}
-                alt="Fokhrul"
-                title="Fokhrul"
+                alt={user.displayName}
+                title={user.displayName}
               />
               <button onClick={handleLogout} className="btn">
                 Logout
