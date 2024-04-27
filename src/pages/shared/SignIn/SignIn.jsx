@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 
 function SignIn() {
   const [email, setEmail] = useState(null);
@@ -52,6 +53,7 @@ function SignIn() {
               Login
             </button>
           </div>
+          <SocialLogin />
           <p className="font-medium text-gray-600 text-center">
             I don't have account{" "}
             <Link className="link text-blue-600" to="/register">

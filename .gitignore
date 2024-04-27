@@ -26,3 +26,4 @@ dist-ssr
 # Added files and folders on gitignore
 B9 A10 Type-02 Requirements.pdf
 BACKEND
+.env
