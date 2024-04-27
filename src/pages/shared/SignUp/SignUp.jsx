@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contextApi/AuthProvider";
 
 function SignUp() {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [password, setPassword] = useState(null);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const handleRegisterForm = (e) => {
     e.preventDefault();
     const user = { name, email, photo, password };
     console.log(user);
+    createUser(email, password)
+      .then(() => {
+        updateUserProfile(name, photo);
+        console.log("Register Success");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
