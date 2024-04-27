@@ -8,7 +8,7 @@ function PrivateRouter({ children }) {
   if (user) {
     return children;
   }
-  return <Navigate to="/login" />;
+  return <Navigate to="/login"></Navigate>;
 }
 
 export default PrivateRouter;

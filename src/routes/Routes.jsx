@@ -7,6 +7,8 @@ import CraftList from "../pages/CraftList/CraftList";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRouter from "./PrivateRouter/PrivateRouter";
+import PublicRouter from "./PublicRouter/PublicRouter";
 
 const router = createBrowserRouter([
   {
@@ -24,19 +26,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-craft",
-        element: <AddCraft />,
+        element: (
+          <PrivateRouter>
+            <AddCraft />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/craft-list",
-        element: <CraftList />,
+        element: (
+          <PrivateRouter>
+            <CraftList />
+          </PrivateRouter>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <PublicRouter>
+            <Login />
+          </PublicRouter>
+        ),
       },
       {
         path: "register",
-        element: <Register />,
+        element: (
+          <PublicRouter>
+            <Register />
+          </PublicRouter>
+        ),
       },
     ],
   },
