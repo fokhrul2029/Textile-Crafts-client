@@ -1,7 +1,9 @@
+import CraftForm from "../shared/CraftForm/CraftForm";
+
 function AddCraft() {
   return (
-    <div>
-      <h1>Add craft pages </h1>
+    <div className="container mx-auto px-4">
+     <CraftForm />
     </div>
   );
 }
