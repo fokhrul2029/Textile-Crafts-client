@@ -33,6 +33,17 @@ function CraftForm() {
       userEmail,
     };
     console.log(item);
+    fetch("http://localhost:3000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
