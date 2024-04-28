@@ -16,6 +16,7 @@ export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
@@ -49,6 +50,7 @@ function AuthProvider({ children }) {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("Absorbing user", currentUser);
+      setLoading(false);
     });
     return () => unSubscribe();
   }, []);
@@ -62,6 +64,7 @@ function AuthProvider({ children }) {
     facebookSignIn,
     loginUser,
     logout,
+    loading
   };
 
   return (

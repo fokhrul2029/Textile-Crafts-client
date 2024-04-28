@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contextApi/AuthProvider";
+import { FaStar } from "react-icons/fa";
 
 function CraftForm() {
   const { user } = useContext(AuthContext);
@@ -9,7 +10,7 @@ function CraftForm() {
   const [subcategory_Name, setSubcategory_Name] = useState(null);
   const [description, setDescription] = useState(null);
   const [price, setPrice] = useState(null);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
   const [customization, setCustomization] = useState(null);
   const [processing_time, setProcessing_time] = useState(null);
   const [stockStatus, setStockStatus] = useState(null);
@@ -70,27 +71,24 @@ function CraftForm() {
             <label className="label">
               <span className="label-text">Subcategory Name</span>
             </label>
-            <input
-              type="text"
-              placeholder="Subcategory Name"
+            <select
               className="input input-bordered"
-              required
               value={subcategory_Name}
               onChange={(e) => setSubcategory_Name(e.target.value)}
-            />
-          </div> 
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Subcategory Name</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Subcategory Name"
-              className="input input-bordered"
               required
-              value={subcategory_Name}
-              onChange={(e) => setSubcategory_Name(e.target.value)}
-            />
+            >
+              <option className="text-gray-400" value="" disabled selected>
+                Select an option
+              </option>
+              <option value="Embroidery">Embroidery</option>
+              <option value="Knitting & Crocheting">
+                Knitting & Crocheting
+              </option>
+              <option value="Quilting">Quilting</option>
+              <option value="Beadwork">Beadwork</option>
+              <option value="Tie-Dyeing">Tie-Dyeing</option>
+              <option value="Macrame">Macrame</option>
+            </select>
           </div>
 
           <div className="form-control">
@@ -121,13 +119,23 @@ function CraftForm() {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Rating</span>
+              <span className="label-text">
+                <div className="flex items-center gap-1">
+                  <p>Rating</p>(
+                  <span className="flex gap-1 items-center">
+                    <FaStar className="text-yellow-500" /> <p>{rating}</p>
+                  </span>
+                  )
+                </div>
+              </span>
             </label>
             <input
-              type="Number"
+              type="range"
               placeholder="Rating"
-              className="input input-bordered"
+              className="range range-success"
               required
+              min={0}
+              max={5}
               value={rating}
               onChange={(e) => setRating(e.target.value)}
             />
@@ -136,21 +144,25 @@ function CraftForm() {
             <label className="label">
               <span className="label-text">Customization</span>
             </label>
-            <input
-              type="Number"
-              placeholder="Customization"
+            <select
               className="input input-bordered"
-              required
               value={customization}
               onChange={(e) => setCustomization(e.target.value)}
-            />
+              required
+            >
+              <option className="text-gray-400" value="" disabled selected>
+                Select an option
+              </option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Processing Time</span>
             </label>
             <input
-              type="Number"
+              type="date"
               placeholder="Processing Time"
               className="input input-bordered"
               required
@@ -162,14 +174,18 @@ function CraftForm() {
             <label className="label">
               <span className="label-text">Stock Status</span>
             </label>
-            <input
-              type="text"
-              placeholder="Stock Status"
+            <select
               className="input input-bordered"
-              required
               value={stockStatus}
               onChange={(e) => setStockStatus(e.target.value)}
-            />
+              required
+            >
+              <option className="text-gray-400" value="" disabled selected>
+                Select an option
+              </option>
+              <option value="In stock">In stock</option>
+              <option value="Made to Order">Made to Order</option>
+            </select>
           </div>
           <div className="form-control">
             <label className="label">
