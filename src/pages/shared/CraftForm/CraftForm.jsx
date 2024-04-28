@@ -12,7 +12,7 @@ function CraftForm() {
   const [price, setPrice] = useState(null);
   const [rating, setRating] = useState(0);
   const [customization, setCustomization] = useState(null);
-  const [processing_time, setProcessing_time] = useState(null);
+  const [processing_time, setProcessing_time] = useState("5-8 Business days");
   const [stockStatus, setStockStatus] = useState(null);
   const [userName] = useState(user.displayName);
   const [userEmail] = useState(user.email);
@@ -106,14 +106,14 @@ function CraftForm() {
             <label className="label">
               <span className="label-text">Short Description</span>
             </label>
-            <input
-              type="text"
-              placeholder="Short Description"
-              className="input input-bordered"
+            <textarea
               required
+              rows="4"
+              placeholder="Short Description"
+              className="textarea textarea-bordered"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-            />
+            ></textarea>
           </div>
           <div className="form-control">
             <label className="label">
@@ -173,8 +173,8 @@ function CraftForm() {
               <span className="label-text">Processing Time</span>
             </label>
             <input
-              type="date"
-              placeholder="Processing Time"
+              type="text"
+              placeholder="5-8 Business days"
               className="input input-bordered"
               required
               value={processing_time}

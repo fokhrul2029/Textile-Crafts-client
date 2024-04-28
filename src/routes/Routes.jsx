@@ -22,6 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/craft-items",
+        loader: () => fetch("http://localhost:3000/all-data"),
         element: <CraftItems />,
       },
       {
