@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 import { AuthContext } from "../../../contextApi/AuthProvider";
+import swal from "sweetalert";
 
 function SignIn() {
   const [email, setEmail] = useState(null);
@@ -15,9 +16,19 @@ function SignIn() {
     console.log(user);
     loginUser(email, password)
       .then(() => {
-        console.log("Login Success");
+        swal({
+          title: "Good job!",
+          text: "You have successfully logged in!",
+          icon: "success", 
+        });
       })
-      .catch((error) => console.error(error));
+      .catch(() => {
+        swal({
+          title: "Login Failed",
+          text: "Email or password doesn't matched!",
+          icon: "warning", 
+        });
+      });
   };
   return (
     <div>

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa";
 import { AuthContext } from "../../contextApi/AuthProvider";
+import swal from "sweetalert";
 
 function SocialLogin() {
   const { googleSignIn, githubSignIn, facebookSignIn } =
@@ -8,11 +9,19 @@ function SocialLogin() {
 
   const handleSignIn = (signIn) => {
     signIn()
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        swal({
+          title: "Good job!",
+          text: "You have successfully logged in!",
+          icon: "success",
+        });
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        swal({
+          title: "Login Failed",
+          text: "Email or password doesn't matched!",
+          icon: "warning",
+        });
       });
   };
 
