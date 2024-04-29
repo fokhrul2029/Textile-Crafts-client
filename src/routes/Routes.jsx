@@ -18,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: () => fetch("http://localhost:3000/categories-data"),
         element: <Home />,
       },
       {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/craft-list",
+        loader: () => fetch("http://localhost:3000/all-data"),
         element: (
           <PrivateRouter>
             <CraftList />
