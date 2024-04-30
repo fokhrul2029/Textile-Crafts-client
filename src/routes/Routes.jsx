@@ -11,6 +11,7 @@ import PrivateRouter from "./PrivateRouter/PrivateRouter";
 import PublicRouter from "./PublicRouter/PublicRouter";
 import Details from "../pages/Details/Details";
 import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
+import Update from "../pages/Update/Update";
 
 const router = createBrowserRouter([
   {
@@ -20,13 +21,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:3000/categories-data"),
+        loader: () => fetch("https://backend-md-fokhrul-islams-projects.vercel.app/categories-data"),
         element: <Home />,
       },
       {
         path: "/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/categories-data/${params.id}`),
+          fetch(`https://backend-md-fokhrul-islams-projects.vercel.app/categories-data/${params.id}`),
         element: (
           <PrivateRouter>
             <CategoryDetails />
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-data/${params.id}`),
+          fetch(`https://backend-md-fokhrul-islams-projects.vercel.app/all-data/${params.id}`),
         element: (
           <PrivateRouter>
             <Details />
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/craft-items",
-        loader: () => fetch("http://localhost:3000/all-data"),
+        loader: () => fetch("https://backend-md-fokhrul-islams-projects.vercel.app/all-data"),
         element: <CraftItems />,
       },
       {
@@ -58,12 +59,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/craft-list",
-        loader: () => fetch("http://localhost:3000/all-data"),
+        loader: () => fetch("https://backend-md-fokhrul-islams-projects.vercel.app/all-data"),
         element: (
           <PrivateRouter>
             <CraftList />
           </PrivateRouter>
         ),
+      },
+      {
+        path: "/update/:id",
+        loader: ({ params }) =>
+          fetch(`https://backend-md-fokhrul-islams-projects.vercel.app/all-data/${params.id}`),
+        element: <Update />,
       },
       {
         path: "login",

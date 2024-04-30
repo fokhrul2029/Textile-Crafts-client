@@ -34,7 +34,7 @@ function CraftForm() {
       userEmail,
     };
     console.log(item);
-    fetch("http://localhost:3000/", {
+    fetch("https://backend-md-fokhrul-islams-projects.vercel.app/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ function CraftForm() {
         swal({
           title: "Failed!",
           text: "Something went wrong!",
-          icon: "success",
+          icon: "warning",
         });
       });
   };

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contextApi/AuthProvider";
 import Card3 from "../../components/Card3/Card3";
 import swal from "sweetalert";
@@ -8,6 +8,7 @@ function CraftList() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const filteredItems = data.filter(
@@ -35,27 +36,36 @@ function CraftList() {
   };
 
   const handleUpdate = (id) => {
-    console.log("Clicked on handle Update", id);
+    navigate(`/update/${id}`);
   };
 
-  const handleDelete = (id) => { 
-    fetch(`http://localhost:3000/categories-data/${id}`, {
-      method: "DELETE",
-    })
-      .then(() => {
-        swal({
-          title: "Deleted success!",
-          text: "Data successfully deleted!",
+  const handleDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`https://backend-md-fokhrul-islams-projects.vercel.app/categories-data/${id}`, {
+          method: "DELETE",
+        })
+          .then()
+          .catch(() => {
+            swal({
+              title: "Request Failed!",
+              text: "Failed to delete data!",
+              icon: "warning",
+            });
+          });
+        swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
         });
-      })
-      .catch(() => {
-        swal({
-          title: "Request Failed!",
-          text: "Failed to delete data!",
-          icon: "warning",
-        });
-      });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
   };
 
   return (

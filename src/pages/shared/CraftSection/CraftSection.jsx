@@ -5,7 +5,7 @@ function CraftSection() {
   const [itemsData, setItemsData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/all-data/")
+    fetch("https://backend-md-fokhrul-islams-projects.vercel.app/all-data/")
       .then((res) => res.json())
       .then((data) => setItemsData(data))
       .catch((error) => console.error(error));
