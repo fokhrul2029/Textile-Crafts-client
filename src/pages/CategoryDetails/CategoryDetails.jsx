@@ -1,9 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 
-function Details() {
+function CategoryDetails() {
   const data = useLoaderData();
-
   return (
     <div className="container mx-auto px-4">
       {data.map((item) => (
@@ -13,4 +12,4 @@ function Details() {
   );
 }
 
-export default Details;
+export default CategoryDetails;

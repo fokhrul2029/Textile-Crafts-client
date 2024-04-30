@@ -8,8 +8,9 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRouter from "./PrivateRouter/PrivateRouter";
-import PublicRouter from "./PublicRouter/PublicRouter"; 
+import PublicRouter from "./PublicRouter/PublicRouter";
 import Details from "../pages/Details/Details";
+import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,24 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/categories-data/${params.id}`),
+        element: (
+          <PrivateRouter>
+            <CategoryDetails />
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "/details/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/all-data/${params.id}`),
-        element: <Details />
+        element: (
+          <PrivateRouter>
+            <Details />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/craft-items",
