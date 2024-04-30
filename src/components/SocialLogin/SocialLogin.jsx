@@ -19,7 +19,7 @@ function SocialLogin() {
       .catch(() => {
         swal({
           title: "Login Failed",
-          text: "Email or password doesn't matched!",
+          text: "Something went wrong!",
           icon: "warning",
         });
       });

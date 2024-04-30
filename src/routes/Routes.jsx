@@ -8,7 +8,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRouter from "./PrivateRouter/PrivateRouter";
-import PublicRouter from "./PublicRouter/PublicRouter";
+import PublicRouter from "./PublicRouter/PublicRouter"; 
+import Details from "../pages/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,12 @@ const router = createBrowserRouter([
         path: "/",
         loader: () => fetch("http://localhost:3000/categories-data"),
         element: <Home />,
+      },
+      {
+        path: "/details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/all-data/${params.id}`),
+        element: <Details />
       },
       {
         path: "/craft-items",

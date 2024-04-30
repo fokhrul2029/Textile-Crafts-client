@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 function Card({ data }) {
-  const { item_title, image, description, _id } = data;
+  const { item_name, image, description, _id } = data;
   const navigate = useNavigate();
 
   const handleNavigate = (id) => {
@@ -15,11 +15,11 @@ function Card({ data }) {
         <img
           className="h-56 opacity-70 hover:opacity-100 cursor-pointer transition-all w-full !bg-black"
           src={image}
-          alt={item_title}
+          alt={item_name}
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{item_title}</h2>
+        <h2 className="card-title">{item_name}</h2>
         <p>{description}</p>
         <div className="card-actions justify-center">
           <button
