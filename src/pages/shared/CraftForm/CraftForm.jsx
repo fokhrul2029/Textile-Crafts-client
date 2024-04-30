@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contextApi/AuthProvider";
 import { FaStar } from "react-icons/fa";
+import swal from "sweetalert";
 
 function CraftForm() {
   const { user } = useContext(AuthContext);
@@ -40,10 +41,20 @@ function CraftForm() {
       },
       body: JSON.stringify(item),
     })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        swal({
+          title: "Good job!",
+          text: "You have successfully added!",
+          icon: "success",
+        });
       })
-      .catch((error) => console.error(error));
+      .catch(() => {
+        swal({
+          title: "Failed!",
+          text: "Something went wrong!",
+          icon: "success",
+        });
+      });
   };
 
   return (
